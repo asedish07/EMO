@@ -8,5 +8,7 @@ Python Version: 3.9.6
 
 ### 하드웨어 사양
 CPU: i9-14900KF
+<br>
 RAM: DDR5 128GB
+<br>
 GPU: RTX 4090 24GB

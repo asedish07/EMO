@@ -54,11 +54,19 @@ class CNN(nn.Module):
     x = self.fc3(x)
     return x
 
+<<<<<<< HEAD
 vocab = torch.load('vocab.pth', map_location=torch.device("cpu"))
 
 # 모델 로드
 model = CNN(vocab_size=4999, embedding_dim=512, n_kernels=256, kernel_sizes=[3, 4, 5], output_dim=7, dropout=0.5, pad_idx=vocab['<PAD>'])
 state_dict = torch.load('best-model.pt', map_location=torch.device("cpu"))
+=======
+vocab = torch.load('vocab.pth')
+
+# 모델 로드
+model = CNN(vocab_size=4999, embedding_dim=512, n_kernels=256, kernel_sizes=[3, 4, 5], output_dim=7, dropout=0.5, pad_idx=vocab['<PAD>'])
+state_dict = torch.load('best-model.pt', map_location=torch.device("mps"))
+>>>>>>> origin/main
 state_dict['embedding.weight'] = state_dict['embedding.weight'][:5000, :]
 print(f"best-model.weight shape: {state_dict['embedding.weight'].shape}")
 
@@ -66,7 +74,11 @@ model.load_state_dict(state_dict)  # 모델 가중치 파일
 model.eval()
 
 # device 설정
+<<<<<<< HEAD
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+=======
+device = torch.device('mps' if torch.backends.mps.is_available() else 'cpu')
+>>>>>>> origin/main
 model.to(device)
 
 # tokenizer 설정 (토큰화 및 텍스트 전처리)
